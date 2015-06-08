@@ -10,7 +10,9 @@
 # PKG=snap ./test
 
 # Invoke ./cover for HTML output
-COVER=${COVER:-"-cover"}
+# COVER=${COVER:-"-cover"}
+
+echo GOMAXPROCS = $GOMAXPROCS
 
 source ./build
 
@@ -50,7 +52,7 @@ go test -timeout 3m ${COVER} $@ ${NO_RACE_TEST}
 
 if [ -n "$INTEGRATION" ]; then
 	echo "Running integration tests..."
-	go test -timeout 3m $@ ${REPO_PATH}/integration -v
+#	go test -timeout 3m $@ ${REPO_PATH}/integration -v
 fi
 
 echo "Checking gofmt..."
