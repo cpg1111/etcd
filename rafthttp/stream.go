@@ -184,6 +184,7 @@ func (cw *streamWriter) run() {
 			}
 			flusher = conn.Flusher
 			cw.mu.Lock()
+			log.Printf("attach new stream")
 			cw.closer = conn.Closer
 			cw.working = true
 			cw.mu.Unlock()

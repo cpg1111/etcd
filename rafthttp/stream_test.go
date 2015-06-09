@@ -77,7 +77,7 @@ func TestStreamWriterAttachBadOutgoingConn(t *testing.T) {
 	testutil.ForceGosched()
 	// no longer working
 	if _, ok := sw.writec(); ok != false {
-		log.Printf("there is no available stream")
+		log.Printf("there is available stream")
 		t.Errorf("working = %v, want false", ok)
 	}
 	if wfc.closed != true {
