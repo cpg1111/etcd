@@ -208,6 +208,7 @@ func (cw *streamWriter) close() {
 	if !cw.working {
 		return
 	}
+	log.Printf("close working stream")
 	cw.closer.Close()
 	if len(cw.msgc) > 0 {
 		cw.r.ReportUnreachable(uint64(cw.id))

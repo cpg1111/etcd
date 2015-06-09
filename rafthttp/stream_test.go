@@ -3,6 +3,7 @@ package rafthttp
 import (
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -76,6 +77,7 @@ func TestStreamWriterAttachBadOutgoingConn(t *testing.T) {
 	testutil.ForceGosched()
 	// no longer working
 	if _, ok := sw.writec(); ok != false {
+		log.Printf("there is no available stream")
 		t.Errorf("working = %v, want false", ok)
 	}
 	if wfc.closed != true {
