@@ -184,7 +184,7 @@ func (cw *streamWriter) run() {
 			}
 			flusher = conn.Flusher
 			cw.mu.Lock()
-			log.Printf("attach new stream")
+			println("attach new stream")
 			cw.closer = conn.Closer
 			cw.working = true
 			cw.mu.Unlock()
@@ -200,12 +200,14 @@ func (cw *streamWriter) run() {
 func (cw *streamWriter) writec() (chan<- raftpb.Message, bool) {
 	cw.mu.Lock()
 	defer cw.mu.Unlock()
+	defer println("working", cw.working)
 	return cw.msgc, cw.working
 }
 
 func (cw *streamWriter) close() {
 	cw.mu.Lock()
 	defer cw.mu.Unlock()
+	defer println("working", cw.working)
 	if !cw.working {
 		return
 	}
