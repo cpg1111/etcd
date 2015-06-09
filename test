@@ -47,8 +47,8 @@ split=(${NO_RACE_TEST// / })
 NO_RACE_TEST=${split[@]/#/${REPO_PATH}/}
 
 echo "Running tests..."
-go test -timeout 3m ${COVER} $@ ${TEST} --race
-go test -timeout 3m ${COVER} $@ ${NO_RACE_TEST}
+go test -timeout 1m ${COVER} $@ ${TEST} --race
+go test -timeout 1m ${COVER} $@ ${NO_RACE_TEST}
 
 if [ -n "$INTEGRATION" ]; then
 	echo "Running integration tests..."
