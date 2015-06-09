@@ -196,6 +196,7 @@ func TestBlockProposal(t *testing.T) {
 
 	errc := make(chan error, 1)
 	go func() {
+		defer println("propose done")
 		errc <- n.Propose(context.TODO(), []byte("somedata"))
 	}()
 

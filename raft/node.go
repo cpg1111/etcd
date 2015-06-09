@@ -385,6 +385,7 @@ func (n *node) ProposeConfChange(ctx context.Context, cc pb.ConfChange) error {
 // Step advances the state machine using msgs. The ctx.Err() will be returned,
 // if any.
 func (n *node) step(ctx context.Context, m pb.Message) error {
+	defer println("step done")
 	ch := n.recvc
 	if m.Type == pb.MsgProp {
 		ch = n.propc
